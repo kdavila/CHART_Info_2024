@@ -1,0 +1,20 @@
+<h1>Image Annotation</h1>
+<br>
+<div *ngIf="loading" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status" >
+      <span class="sr-only" id="loading"></span>
+    </div>
+</div>
+<div *ngIf="!annotationDone && !loading">
+    <p>Image {{index + 1}} of {{imagesForAnnotation?.length}}</p>
+    <app-image-annotation-thumbnail [imageAnnotated]="imageAnnotated" (annotated)="annotateImage($event)"></app-image-annotation-thumbnail>
+    <!--Prev rand next-->
+   <div class="btn-group" role="group" aria-label="Basic outlined example" style="margin-top: 2em;">
+       <button type="button" class="btn btn-outline-success" (click)="previousImage();" [disabled]="!enablePrev">Previous</button>
+       <button type="button" class="btn btn-outline-success" (click)="randomImage();">Random</button>
+       <button type="button" class="btn btn-outline-success" (click)="nextImage();" [disabled]="!enableNext">Next</button>
+   </div>
+</div>
+<div *ngIf="annotationDone">
+    <h5>There are no images assigned to you.</h5>
+</div>

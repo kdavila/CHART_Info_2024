@@ -1,0 +1,11 @@
+<app-navbar [assignActive]="assignActive" [annotateActive]="annotateActive" [validateActive]="validateActive"
+    (assignClick)="toggleViewAssign=true; toggleViewAnnotate=false; toggleViewValidate=false;"
+    (annotateClick)="toggleViewAssign=false; toggleViewAnnotate=true; toggleViewValidate=false;"
+    (validateClick)="toggleViewAssign=false; toggleViewAnnotate=false; toggleViewValidate=true;"
+></app-navbar>
+<div class="container">
+    <h2 *ngIf="!toggleViewAssign && !toggleViewAnnotate && !toggleViewValidate" style="margin-top: 10px;">Welcome {{user.name}}</h2>
+    <app-image-assignment *ngIf="toggleViewAssign"></app-image-assignment>
+    <app-image-annotation *ngIf="toggleViewAnnotate"></app-image-annotation>
+    <app-image-validation *ngIf="toggleViewValidate"></app-image-validation>
+</div>

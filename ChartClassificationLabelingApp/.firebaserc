@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "chart2023project",
+    "dev": "chart2023-dev",
+    "prod": "chart2023-prod"
+  },
+  "targets": {
+    "chart2023-prod": {
+      "hosting": {
+        "img-classification-project": [
+          "chart2023-prod"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

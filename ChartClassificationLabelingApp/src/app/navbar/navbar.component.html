@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">CHART 2023</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" *ngIf="assignActive">
+                    <a id="assignLink" class="nav-link" (click)="showAssignation()">Assignment</a>
+                </li>
+                <li class="nav-item" *ngIf="annotateActive">
+                    <a id="annotateLink" class="nav-link" (click)="showAnnotation()">Annotation</a>
+                </li>
+                <li class="nav-item" *ngIf="validateActive">
+                    <a id="validateLink" class="nav-link" (click)="showValidation()">Validation</a>
+                </li>  
+            </ul>
+            <ul class="navbar-nav justify-content-end">
+                <li class="nav-item logout">
+                    <a id="logOutLink" class="nav-link" (click)="logOut();">Log Out <fa-icon [icon]="faRightFromBracket"></fa-icon></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

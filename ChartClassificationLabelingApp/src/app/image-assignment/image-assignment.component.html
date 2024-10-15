@@ -1,0 +1,114 @@
+<h1>Image Assignment</h1>
+<br>
+<form #assignmentForm="ngForm" (ngSubmit)="onSubmit();">
+    <!--Filters-->
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Panel Type</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="panelRadio" id="panelRadio1" value="0" required [(ngModel)]="imageAssign.panelType">
+                <label class="form-check-label" for="panelRadio1">
+                Single Panel
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="panelRadio" id="panelRadio2" value="1" [(ngModel)]="imageAssign.panelType">
+                <label class="form-check-label" for="panelRadio2">
+                Multi Panel
+                </label>
+            </div>
+            <!-- <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="panelRadio" id="panelRadio3" value="Any" [(ngModel)]="imageAssign.panelType">
+                <label class="form-check-label" for="panelRadio3">
+                Any Panel
+                </label>
+            </div> -->
+        </div>
+        
+
+        <legend class="col-form-label col-sm-2 pt-0">Has Chart</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="chartRadio" id="chartRadio1" value="1" required [(ngModel)]="imageAssign.hasChart">
+                <label class="form-check-label" for="chartRadio1">
+                Yes
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="chartRadio" id="chartRadio2" value="0" [(ngModel)]="imageAssign.hasChart">
+                <label class="form-check-label" for="chartRadio2">
+                No
+                </label>
+            </div>
+            <!-- <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="chartRadio" id="chartRadio3" value="Any" [(ngModel)]="imageAssign.hasChart">
+                <label class="form-check-label" for="chartRadio3">
+                Any
+                </label>
+            </div> -->
+        </div>
+
+        <div *ngIf="imageAssign.panelType == '0' && imageAssign.hasChart == '1'">
+            <legend class="col-form-label col-sm-2 pt-0">Chart Type</legend>
+            <div class="col-sm-10">
+                <div class="form-check form-check-inline" *ngFor="let chart of chartTypes">
+                    <input class="form-check-input" type="radio" [name]="chart.name" [id]="chart.id" [value]="chart.name" required [(ngModel)]="imageAssign.chartType">
+                    <label class="form-check-label" [for]="chart.id">
+                    {{chart.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+    </fieldset>
+    <!--Amount of images-->
+    <div class="row mb-3">
+        <label for="amountImages" class="col-sm-2 col-form-label">Amount Of Images</label>
+        <div class="col-sm-10">
+            <input type="number" min="1" class="form-control" name="amountImages" id="amountImages"  required [(ngModel)]="imageAssign.amountImages">
+            <div class="invalid-feedback">Amount of images field is invalid</div>
+        </div>
+    </div>
+    <!--Annotators-->
+    <div class="row mb-3">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Assign To</label>
+        
+        <div class="col-sm-10">
+            <select class="form-select" required aria-label="assign to" name="annotator" [(ngModel)]="imageAssign.assignTo">
+              <option *ngIf="annotators.length > 0" value="0">Select the annotator...</option>
+              <option *ngIf="annotators.length == 0" value="0">Loading...</option>
+              <option [value]="annotator.id" *ngFor="let annotator of annotators">{{annotator.name}}</option>
+            </select>
+            <div class="invalid-feedback">Assign to field is invalid</div>
+          </div>
+    </div>
+    <!--Difficulty-->
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Difficulty</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="difficultyRadio" id="difficultyRadio1" value="Easy" required [(ngModel)]="imageAssign.difficulty">
+                <label class="form-check-label" for="difficultyRadio1">
+                Easy
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="difficultyRadio" id="difficultyRadio2" value="Hard" [(ngModel)]="imageAssign.difficulty">
+                <label class="form-check-label" for="difficultyRadio2">
+                Hard
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="difficultyRadio" id="difficultyRadio3" value="Any" [(ngModel)]="imageAssign.difficulty">
+                <label class="form-check-label" for="difficultyRadio3">
+                Any
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <br>
+    <div >
+        <button type="submit" class="btn btn-success col-sm-2 " [disabled]="!assignmentForm.form.valid">Submit<fa-icon [icon]="faPaperPlane" style="margin-left:8px;"></fa-icon> </button>
+    </div>
+</form>

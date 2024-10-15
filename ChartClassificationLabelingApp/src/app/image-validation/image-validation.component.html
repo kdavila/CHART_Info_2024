@@ -1,0 +1,38 @@
+<h1>Image Validation</h1>
+<br>
+<!--Filtros-->
+<h6>Filters</h6>
+<div class="row">
+    <div class="col-sm-4"><app-multi-panel-filter (changed)="filterMultiPanel($event);"></app-multi-panel-filter></div>
+    <div class="col-sm-4"><app-has-charts-filter (changed)="filterHasChart($event);"></app-has-charts-filter></div>
+    <div class="col-sm-4"><app-chart-type-filter (changed)="filterChartType($event);" [chartFilter]="chartTypeFilter"></app-chart-type-filter></div>
+</div>
+<br>
+
+<div *ngIf="loading" class="d-flex justify-content-center">
+  <div class="spinner-border" role="status" >
+    <span class="sr-only" id="loading"></span>
+  </div>
+</div>
+
+<app-image-validation-thumbnail 
+            [imagesTopRow]="imagesDisplayTopRow"
+            [imagesBottomRow]="imagesDisplayBottomRow"
+            (imagesAccepted)="acceptImages($event)"
+            (imagesRejected)="rejectImages($event)">
+</app-image-validation-thumbnail>
+
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item" id="previousButton">
+            <span class="page-link" (click)="previousPage();" disabled>Previous</span>
+        </li>
+        <li class="page-item" *ngFor="let page of pages">
+            <a class="page-link" [id]="page[0]" [name]="page[0]" (click)="moveToPage(page[1]);" [ngClass]="{'active': page[0] === 'page1'}"
+            >{{page[1]}}</a>
+        </li>
+        <li class="page-item" id="nextButton">
+            <a class="page-link" (click)="nextPage();">Next</a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,38 @@
+<div class="container login-form">
+    <div class="card">
+        <h1>Login</h1>
+        <form class="user-login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <div class="row">
+            <div class="col-md-12 roundedTextBox mb-3">
+                <label>Username</label>
+                <input type="text" class="form-control mb-2" id="inputEmail" formControlName="email" placeholder="Enter Username">
+                <!-- <small id="emailHelp" class="form-text text-muted ml-2">We'll never share your email with anyone else.</small> -->
+                <div *ngIf="submitted && formControl['email'].errors" class="text-danger">
+                <div *ngIf="formControl['email'].errors['email']">Username must be valid.</div>
+                <div *ngIf="formControl['email'].errors['required']">Username is required.</div>
+                </div>
+            </div>
+            <div class="col-md-12 roundedTextBox mb-3">
+                <label>Password</label>
+                <input type="password" class="form-control mb-2" id="inputPassword" formControlName="password" placeholder="Enter Password">
+                <div *ngIf="submitted && formControl['password'].errors" class="text-danger">
+                <div *ngIf="formControl['password'].errors['required']">Password is required.</div>
+                <div *ngIf="formControl['password'].errors['pattern']">
+                    <!-- <h3>Password must contain the following:</h3> -->
+                    <ul>
+                    <li>Password should be alphanumeric</li>
+                    <li>A letter of the password should be capital</li>
+                    <li>Password must contain a special character (@, $, !, &, etc)</li>
+                    <li>Password length must be greater than 7 characters</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+            <br>
+            <div class="buttons text-center">
+                <button class="btn btn-success" type="submit">Log In <fa-icon [icon]="faSignIn" style="font-size:20px;"></fa-icon></button>
+            </div>
+        </form>
+    </div>
+</div>

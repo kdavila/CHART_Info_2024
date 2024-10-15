@@ -1,0 +1,12 @@
+.active{
+    background-color:rgb(163, 163, 163);
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.logout {
+    position: relative;
+    display: inline-block;
+}

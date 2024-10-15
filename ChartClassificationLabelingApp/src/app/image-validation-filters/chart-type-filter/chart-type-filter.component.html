@@ -1,0 +1,4 @@
+<select class="form-select" (change)="onChange();" [(ngModel)]="chartFilter">
+    <option value="Any">Any Chart</option>
+    <option *ngFor="let chart of chartTypes" [value]="chart.name">{{chart.name}}</option>
+</select>
